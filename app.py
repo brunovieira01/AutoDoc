@@ -17,7 +17,15 @@ st.write("Grave sua consulta utilizando o gravador de áudio do celular ou de se
 st.write("")
 
 # File Upload
-uploaded_file = st.file_uploader("Escolha um arquivo de áudio de até 25MB (versão beta)...", type=["wav", "mp3", "m4a"])
+uploaded_file = st.file_uploader("Escolha um arquivo de áudio de até 25MB (versão beta)...", type=["wav", "mp3", "m4a", "mp4", "mpeg","mpga", "webm"])
+
+# Check file requirements
+supported_formats = ["wav", "mp3", "m4a", "mp4", "mpeg","mpga", "webm"]
+file_format = uploaded_file.name.split('.')[-1].lower()
+
+if file_format not in supported_formats:
+    raise Exception(f"Error: Unsupported file format '{file_format}'. Supported formats are {supported_formats}")
+    
 
 if uploaded_file is not None:
     
